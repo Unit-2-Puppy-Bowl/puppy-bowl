@@ -3,7 +3,7 @@ const playerContainer = document.getElementById("all-players-container");
 const newPlayerFormContainer = document.getElementById("new-player-form");
 
 // Cohort name variable, replace with your own cohort name
-const cohortName = "YOUR COHORT NAME HERE";
+const cohortName = "2302-ACC-CT-PT-B";
 // Base URL for fetch requests
 const APIURL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}/`;
 
@@ -13,7 +13,7 @@ const APIURL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}/`;
  */
 const fetchAllPlayers = async () => {
   try {
-    const response = await fetch(APIURL + 'players');
+    const response = await fetch(APIURL + "players");
     const result = await response.json();
 
     if (result.success) {
@@ -58,7 +58,10 @@ const removePlayer = async (playerId) => {
   try {
     // Code to remove a player goes here
   } catch (err) {
-    console.error(`Whoops, trouble removing player #${playerId} from the roster!`, err);
+    console.error(
+      `Whoops, trouble removing player #${playerId} from the roster!`,
+      err
+    );
   }
 };
 
@@ -73,8 +76,8 @@ const removePlayer = async (playerId) => {
  */
 const renderAllPlayers = (playerList) => {
   try {
-    let playerContainerHTML = '';
-    playerList.forEach(player => {
+    let playerContainerHTML = "";
+    playerList.forEach((player) => {
       playerContainerHTML += `
       <div class="player-card">
         <img src="${player.imageUrl}" alt="${player.name}">
@@ -117,4 +120,3 @@ const init = async () => {
 
 // Call the initial function
 init();
-
