@@ -1,0 +1,34 @@
+h1 {
+    color: mediumblue;
+    text-align: center;
+}
+h2 {
+    background-color: blueviolet;
+    color: aliceblue;
+    text-align: center;
+}
+div {
+    background-color: coral;
+}
+html {
+    background-color: darkkhaki;
+}
+div, span {
+    display: inline-block;
+}
+h3 {
+    text-align: center;
+}
+section {
+    align-items: center;
+}
+body {
+    text-align: center;
+}
+img {
+    border: 3px;
+    margin: 5px 5px 5px 5px;
+    padding: 2px 3px 2px 3px;
+    height: 200px;
+    width: 200px;
+}
