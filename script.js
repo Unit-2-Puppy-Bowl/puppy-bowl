@@ -32,7 +32,9 @@ const fetchAllPlayers = async () => {
  */
 const fetchSinglePlayer = async (playerId) => {
   try {
-    // Code to fetch a single player goes here
+    fetch(
+      `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}/players/${playerId}`
+    );
   } catch (err) {
     console.error(`Oh no, trouble fetching player #${playerId}!`, err);
   }
@@ -95,6 +97,49 @@ const renderAllPlayers = (playerList) => {
   }
 };
 
+const renderSinglePlayer = (player) => {
+  try {
+    // create card and append to container
+    const playerCard = document.createElement("div");
+    playerCard.id = player.id;
+    playerCard.className = "player-card";
+    playerContainer.appendChild(playerCard);
+
+    // create h2
+    const playerName = document.createElement("h2");
+    playerCard.appendChild(playerName);
+    playerName.innerHTML = player.name;
+
+    const playerBreed = document.createElement("p");
+    playerCard.appendChild(playerBreed);
+    playerBreed.innerHTML = `Breed: ${player.breed}`;
+
+    const playerStatus = document.createElement("p");
+    playerCard.appendChild(playerStatus);
+    playerStatus.innerHTML = `Status: ${player.status}`;
+
+    // create img for image
+    const playerImage = document.createElement("img");
+    playerImage.className = "player-image";
+    playerCard.appendChild(playerImage);
+    playerImage.src = player.imageUrl;
+
+    // create show details button
+    const showDetailsButton = document.createElement("button");
+    playerCard.appendChild(showDetailsButton);
+    showDetailsButton.innerHTML = "See details";
+
+    // create delete button
+    const deleteButton = document.createElement("button");
+    playerCard.appendChild(deleteButton);
+    deleteButton.innerHTML = "Remove from roster";
+
+    return playerCard;
+  } catch (err) {
+    console.error("Uh oh, trouble rendering player!", err);
+  }
+};
+
 /**
  * It renders a form to the DOM, and when the form is submitted, it adds a new player to the database,
  * fetches all players from the database, and renders them to the DOM. To be implemented.
@@ -113,7 +158,8 @@ const renderNewPlayerForm = () => {
  */
 const init = async () => {
   const players = await fetchAllPlayers();
-  renderAllPlayers(players);
+  // renderAllPlayers(players);
+  renderSinglePlayer(players[0]);
 
   renderNewPlayerForm();
 };
