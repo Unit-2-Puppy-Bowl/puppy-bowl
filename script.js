@@ -147,6 +147,21 @@ const renderSinglePlayer = (player) => {
 const renderNewPlayerForm = () => {
   try {
     // Code to render a form for a new player goes here
+    const form = document.createElement("div");
+    form.innerHTML = `
+      <form>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="breed">Breed:</label><br>
+        <input type="text" id="breed" name="breed"><br>
+        <label for="status">Status:</label><br>
+        <input type="text" id="status" name="status"><br>
+        <label for="imageUrl">ImageUrl:</label><br>
+        <input type="text" id="imageUrl" name="imageUrl"><br>
+        <input type="submit" id="submit-button" value="Submit">
+      </form>
+    `;
+    newPlayerFormContainer.appendChild(form);
   } catch (err) {
     console.error("Uh oh, trouble rendering the new player form!", err);
   }
@@ -159,7 +174,7 @@ const renderNewPlayerForm = () => {
 const init = async () => {
   const players = await fetchAllPlayers();
   // renderAllPlayers(players);
-  renderSinglePlayer(players[0]);
+  // renderSinglePlayer(players[0]);
 
   renderNewPlayerForm();
 };
