@@ -78,17 +78,8 @@ const removePlayer = async (playerId) => {
  */
 const renderAllPlayers = (playerList) => {
   try {
-    let playerContainerHTML = "";
     playerList.forEach((player) => {
-      playerContainerHTML += `
-      <div class="player-card">
-        <img src="${player.imageUrl}" alt="${player.name}">
-        <h2>${player.name}</h2>
-        <p>Breed: ${player.breed}</p>
-        <p>Status: ${player.status}</p>
-        <button class="details-button" data-id="${player.id}">See details</button>
-        <button class="remove-button" data-id="${player.id}">Remove from roster</button>
-      </div>`;
+      renderSinglePlayer(player);
     });
 
     playerContainer.innerHTML = playerContainerHTML;
