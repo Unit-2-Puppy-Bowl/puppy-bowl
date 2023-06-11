@@ -134,6 +134,7 @@ const renderSinglePlayer = (player) => {
     showDetailsButton.addEventListener("click", () => {
       playerBreed.style.display = "block";
       playerStatus.style.display = "block";
+      showDetailsButton.remove();
     });
 
     // create delete button
