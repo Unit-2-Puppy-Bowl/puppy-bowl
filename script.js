@@ -104,10 +104,12 @@ const renderSinglePlayer = (player) => {
     const playerBreed = document.createElement("p");
     playerCard.appendChild(playerBreed);
     playerBreed.innerHTML = `Breed: ${player.breed}`;
+    playerBreed.style.display = "none";
 
     const playerStatus = document.createElement("p");
     playerCard.appendChild(playerStatus);
     playerStatus.innerHTML = `Status: ${player.status}`;
+    playerStatus.style.display = "none";
 
     // create img for image
     const playerImage = document.createElement("img");
@@ -119,6 +121,11 @@ const renderSinglePlayer = (player) => {
     const showDetailsButton = document.createElement("button");
     playerCard.appendChild(showDetailsButton);
     showDetailsButton.innerHTML = "See details";
+
+    showDetailsButton.addEventListener("click", () => {
+      playerBreed.style.display = "block";
+      playerStatus.style.display = "block";
+    });
 
     // create delete button
     const deleteButton = document.createElement("button");
