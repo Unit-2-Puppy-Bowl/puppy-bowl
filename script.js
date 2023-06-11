@@ -32,9 +32,7 @@ const fetchAllPlayers = async () => {
  */
 const fetchSinglePlayer = async (playerId) => {
   try {
-    fetch(
-      `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}/players/${playerId}`
-    );
+    fetch(`${APIURL}players/${playerId}`);
   } catch (err) {
     console.error(`Oh no, trouble fetching player #${playerId}!`, err);
   }
@@ -58,7 +56,9 @@ const addNewPlayer = async (playerObj) => {
  */
 const removePlayer = async (playerId) => {
   try {
-    // Code to remove a player goes here
+    fetch(`${APIURL}players/${playerId}`, {
+      method: "DELETE",
+    });
   } catch (err) {
     console.error(
       `Whoops, trouble removing player #${playerId} from the roster!`,
@@ -173,8 +173,7 @@ const renderNewPlayerForm = () => {
  */
 const init = async () => {
   const players = await fetchAllPlayers();
-  // renderAllPlayers(players);
-  // renderSinglePlayer(players[0]);
+  renderAllPlayers(players);
 
   renderNewPlayerForm();
 };
