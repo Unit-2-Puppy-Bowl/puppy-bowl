@@ -109,6 +109,18 @@ const renderSinglePlayer = (player) => {
     playerCard.appendChild(playerName);
     playerName.innerHTML = player.name;
 
+    // create img for image
+    const playerImage = document.createElement("img");
+    playerImage.className = "player-image";
+    playerCard.appendChild(playerImage);
+    playerImage.src = player.imageUrl;
+
+    // create show details button
+    const showDetailsButton = document.createElement("button");
+    showDetailsButton.id = "details-button";
+    playerCard.appendChild(showDetailsButton);
+    showDetailsButton.innerHTML = "See details";
+
     const playerBreed = document.createElement("p");
     playerCard.appendChild(playerBreed);
     playerBreed.innerHTML = `Breed: ${player.breed}`;
@@ -119,17 +131,6 @@ const renderSinglePlayer = (player) => {
     playerStatus.innerHTML = `Status: ${player.status}`;
     playerStatus.style.display = "none";
 
-    // create img for image
-    const playerImage = document.createElement("img");
-    playerImage.className = "player-image";
-    playerCard.appendChild(playerImage);
-    playerImage.src = player.imageUrl;
-
-    // create show details button
-    const showDetailsButton = document.createElement("button");
-    playerCard.appendChild(showDetailsButton);
-    showDetailsButton.innerHTML = "See details";
-
     showDetailsButton.addEventListener("click", () => {
       playerBreed.style.display = "block";
       playerStatus.style.display = "block";
@@ -137,6 +138,7 @@ const renderSinglePlayer = (player) => {
 
     // create delete button
     const deleteButton = document.createElement("button");
+    deleteButton.id = "delete-button";
     playerCard.appendChild(deleteButton);
     deleteButton.innerHTML = "Remove from roster";
 
@@ -177,6 +179,7 @@ const renderNewPlayerForm = () => {
     `;
 
     const submitButton = document.createElement("button");
+    submitButton.id = "submit-button";
     form.appendChild(submitButton);
     submitButton.innerHTML = "Submit";
 
