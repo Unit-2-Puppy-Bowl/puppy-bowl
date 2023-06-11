@@ -125,6 +125,12 @@ const renderSinglePlayer = (player) => {
     playerCard.appendChild(deleteButton);
     deleteButton.innerHTML = "Remove from roster";
 
+    deleteButton.addEventListener("click", async () => {
+      await removePlayer(player.id);
+      const deleted = document.getElementById(player.id);
+      deleted.remove();
+    });
+
     return playerCard;
   } catch (err) {
     console.error("Uh oh, trouble rendering player!", err);
