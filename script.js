@@ -44,7 +44,15 @@ const fetchSinglePlayer = async (playerId) => {
  */
 const addNewPlayer = async (playerObj) => {
   try {
-    // Code to add a new player goes here
+    const response = await fetch(`${APIURL}players/${playerId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(playerObj),
+    });
+    const newPlayer = await response.json();
+    return newPlayer;
   } catch (err) {
     console.error("Oops, something went wrong with adding that player!", err);
   }
@@ -82,7 +90,7 @@ const renderAllPlayers = (playerList) => {
       renderSinglePlayer(player);
     });
 
-    playerContainer.innerHTML = playerContainerHTML;
+    // playerContainer.innerHTML = playerContainerHTML;
   } catch (err) {
     console.error("Uh oh, trouble rendering players!", err);
   }
@@ -153,18 +161,29 @@ const renderNewPlayerForm = () => {
     // Code to render a form for a new player goes here
     const form = document.createElement("div");
     form.innerHTML = `
-      <form>
+      <form action="" method="post">
         <label for="name">Name:</label><br>
         <input type="text" id="name" name="name"><br>
         <label for="breed">Breed:</label><br>
         <input type="text" id="breed" name="breed"><br>
         <label for="status">Status:</label><br>
-        <input type="text" id="status" name="status"><br>
+        <select name ="status" id="status">
+        <option value="bench">Bench</option>
+        <option value="field">Field</option>
+        </select><br>
         <label for="imageUrl">ImageUrl:</label><br>
         <input type="text" id="imageUrl" name="imageUrl"><br>
-        <input type="submit" id="submit-button" value="Submit">
       </form>
     `;
+
+    const submitButton = document.createElement("button");
+    form.appendChild(submitButton);
+    submitButton.innerHTML = "Submit";
+
+    submitButton.addEventListener("click", async () => {
+      await addNewPlayer(player);
+    });
+
     newPlayerFormContainer.appendChild(form);
   } catch (err) {
     console.error("Uh oh, trouble rendering the new player form!", err);
