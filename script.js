@@ -69,6 +69,7 @@ const addNewPlayer = async (breed, Name) => {
 const removePlayer = async (playerId) => {
   try {
     // Code to remove a player goes here
+    fetch(`${APIURL}/players/${playerId}`, { method: 'DELETE'});
   } catch (err) {
     console.error(
       `Whoops, trouble removing player #${playerId} from the roster!`,
